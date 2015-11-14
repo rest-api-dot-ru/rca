@@ -1,3 +1,4 @@
-flask
-requests
-lxml
+Flask==0.10.1
+requests==2.8.1
+lxml==3.5.0
+validators==0.9
