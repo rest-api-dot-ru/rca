@@ -2,3 +2,4 @@ DEBUG = True
 SECRET_KEY = '123'
 BCRYPT_LEVEL = 12
 MAIL_FROM_EMAIL = "vanzhiganov@ya.ru"
+SERVER_NAME = '127.0.0.1:5001'
