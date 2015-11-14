@@ -1,12 +1,12 @@
 # coding: utf-8
 
-import json
 import requests
 from lxml import html
-
+import validators
 from flask import Flask
 from flask import request
 from flask import jsonify
+from rca import errors
 
 __author__ = 'vanzhiganov'
 
@@ -17,6 +17,13 @@ rca.config.from_object('config')
 
 @rca.route('/')
 def index():
+    # check mandatory args
+    if 'url' not in request.args:
+        return jsonify(errors.MISSING_PARAMETER_URL)
+
+    if not validators.url(request.args['url']):
+        return jsonify(errors.INVALID_PARAMETER_URL)
+
     url = request.args['url']
     response = requests.get(url)
     parsed_body = html.fromstring(response.text)
@@ -58,10 +65,9 @@ def index():
     data['mime'] = response.headers['Content-Type'].split(';')[0]
     # optional: confidence
 
-    # print url_data.content
-
     data['links'] = []
     for df in parsed_body.xpath('//a/@href'):
-        data['links'].append(df)
+        if df:
+            data['links'].append(df)
 
     return jsonify(data)
