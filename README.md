@@ -45,5 +45,21 @@ apt-get install libxml2-dev libxslt-dev python-dev lib32z1-dev
 
 а уже после можно выполнять команду `pip install lxml` в обычном режиме.
 
+## Окружение
+
+`virtualenv env/rca `
+
+`source env/rca/bin/activate`
+
+`git clone https://github.com/rest-api-dot-ru/rca.git`
+
+`cd rca/`
+
+`pip install -r requirements.txt`
+
+`cp extra/supervisor.conf /etc/supervisor/conf.d/rca.conf`
+
+`supervisorctl reload`
+
 # Использование
 
