@@ -12,8 +12,7 @@ __author__ = 'vanzhiganov'
 
 
 rca = Flask(__name__)
-rca.config['DEBUG'] = True
-rca.config['SECRET_KEY'] = '123'
+rca.config.from_object('config')
 
 
 @rca.route('/')
